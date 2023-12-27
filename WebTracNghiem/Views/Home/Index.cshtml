@@ -1,0 +1,110 @@
+﻿@model IEnumerable<WebTracNghiem.Models.Bai>
+
+@{
+    var lstMon = ViewBag.lstSubject as List<MonHoc>; var kiemtra = ViewBag.kikiemtra as List<DanhSachThi>;
+}
+<main>
+  
+    <div class="menu-toggle"> <a href="#">Menu</a> </div>
+    <div class="wrapper">
+        <div class="thanh">
+            <nav>
+
+                <ul class="menu">
+                    <li>
+                        <div class="close-btn">
+                            <i class="fas fa-times">
+                            </i>
+                        </div>
+                    </li>
+                    <li class="menu-item">
+                        <a asp-controller="BaiGiangs" asp-action="DeCuong">Đề cương</a>
+                    </li>
+                    <li class="menu-item">
+                        <a asp-controller="BaiGiangs" asp-action="Lich">Lịch</a>
+                    </li>
+                    <li class="menu-item ">
+                        <a asp-controller="BaiGiangs" asp-action="NoiDungChinh">Bài giảng</a>
+                    </li>
+                    <li class="menu-item">
+                        <a asp-controller="BaiGiangs" asp-action="BaiTap">Bài tập</a>
+                    </li>
+                    @if (User.Identity.Name != null)
+                    {
+                        <li class="menu-item">
+                            <a id="menu-item-5" asp-area="" asp-controller="BaiGiangs" data-action="kythi" asp-action="KyThi">Kỳ thi</a>
+                        </li>
+
+                    }
+
+
+                </ul>
+            </nav>
+        </div>
+
+
+        <div id="" class="noidung">
+            <ul>
+                @if (lstMon != null && lstMon.Count() > 0)
+                {
+                    @foreach (var monhoc in lstMon)
+                    {
+                        <li>
+                            <h2>
+                                @monhoc.TenMonHoc
+                            </h2>
+                            <hr />
+                        </li>
+                        <li>
+                            <p>
+                                @Html.Raw(  @monhoc.MoTa)
+                            </p>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</main>
+@section Scripts{
+    <script src="~/assets/js/menu_.js">
+    </script>
+
+
+}
+@*<!-- Modal thành công -->
+<div class="modal fade" id="success-modal" tabindex="-1" role="dialog" aria-labelledby="success-modal-label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="success-modal-label">Thông báo</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Chúc mừng bạn mật khẩu thành công  </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Script để hiển thị modal -->
+<script>
+    var successMessage = sessionStorage.getItem('successMessage');
+    var errorMessage = sessionStorage.getItem('errorMessage');
+    if (successMessage) {
+        $('#success-modal').modal('show');
+        sessionStorage.removeItem('successMessage');
+    }
+    if (errorMessage) {
+        $('#error-modal').modal('show');
+        sessionStorage.removeItem('errorMessage');
+    }
+</script>
+*@
