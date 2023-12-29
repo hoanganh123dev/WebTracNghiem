@@ -155,7 +155,7 @@ namespace WebTracNghiem.Areas.Admin.Controllers
                     };
                     using var smtp = new SmtpClient();
                     smtp.Connect("smtp.gmail.com", 587, SecureSocketOptions.StartTls);
-                    smtp.Authenticate("0306201451@caothang.edu.vn", "12345qwertKHANG");
+                    smtp.Authenticate("0982360098@hutech.edu.vn", "12345qwertHA");
                     smtp.Send(email);
                     smtp.Disconnect(true);
 
